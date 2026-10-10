@@ -6,6 +6,7 @@ int main()
 {
     int H;
     int W;
+    cin >> H >> W;
     vector<string> A(H);
     vector<string> B(H);
     for (int i = 0; i < H; i++)
@@ -16,12 +17,27 @@ int main()
     {
         cin >> B[i];
     }
-    for (int i = 0; i < W; i++)
+    for (int t = 0; t < H; t++)
     {
-        int a = 0;
+        for (int s = 0; s < W; s++)
+        {
+            bool ok = true;
+            for (int i = 0; i < H; i++)
+            {
+                for (int j = 0; j < W; j++)
+                {
+                    if (A[(i + t) % H][(j + s) % W] != B[i][j])
+                    {
+                        ok = false;
+                    }
+                }
+            }
+            if (ok == true)
+            {
+                cout << "Yes\n";
+                return 0;
+            }
+        }
     }
-    for (int i = 0; i < H; i++)
-    {
-        rotate(A[i].begin(), A[i].begin() + 1, A[i].end());
-    }
+    cout << "No";
 }
