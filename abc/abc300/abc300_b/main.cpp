@@ -1,5 +1,4 @@
 // abc300_b
-// 途中
 #include <bits/stdc++.h>
 using namespace std;
 int main()
