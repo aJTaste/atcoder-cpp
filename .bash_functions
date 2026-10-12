@@ -77,6 +77,7 @@ sbf() {
 sbr() {
     source ~/.bashrc
 }
+
 # 2026/10/11（12日の0時くらいだった）
 # 今日から日付を書くようにする
 # そして.bash_functionsはcpp-studyに置くことにした（sbfいらないのでは？）
@@ -89,6 +90,7 @@ pushcpp() {
     git commit -m "${1}" -m "${2}"
     git push
 }
+
 # 2026/10/12
 # aojのitp1の構造を作るコマンド（ほぼmkabcの再利用）
 # こんな複雑だったっけ
