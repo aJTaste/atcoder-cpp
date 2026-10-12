@@ -86,7 +86,7 @@ gitaddcpp() {
 }
 pushcpp() {
     git add ~/work/cpp-study/
-    git commit -m "${1}" 
+    git commit -m "${1}" -m "${2}"
     git push
 }
 # 2026/10/12
