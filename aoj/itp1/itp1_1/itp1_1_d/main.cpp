@@ -1,0 +1,6 @@
+// itp1_1_d
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+}
