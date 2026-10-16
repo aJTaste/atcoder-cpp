@@ -1,6 +1,6 @@
 run() {
     local src="${1:-main.cpp}"
-    local exe="${2:-${src%.*}}"
+    local exe="${2:-main}"
     g++ -std=c++23 -O0 -g -Wall -Wextra -Wshadow -fsanitize=address,undefined "${src}" -o "${exe}" && "./${exe}"
 }
 mkabc() {
