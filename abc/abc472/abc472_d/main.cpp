@@ -7,26 +7,76 @@ int main()
     int W;
     int K;
     cin >> H >> W >> K;
-    vector<vector<string>> S(H, vector<string>(W));
-    vector<string> T(H);
-    vector<int> X;
-    vector<int> Y;
-    for (int a = 0; a < H; a++)
+    vector<string> S(H);
+    for (auto &x : S)
     {
-        cin >> T[a];
-        for (int b = 0; b < W; b++)
-        {
-            S[a][b] = T[a][b];
-        }
+        cin >> x;
     }
+    queue<pair<int, int>> q;
+    vector<vector<int>> dist(H, vector<int>(W, -1));
+    vector<int> ncbomb;
+    vector<int> nrbomb;
     for (int i = 0; i < H; i++)
     {
-        if (auto it = find(S[i].begin(), S[i].end(), "#"); it == S[i].end())
+        if (!S[i].contains('#'))
         {
-            Y.push_back(i);
+            nrbomb.push_back(i);
         }
     }
-    for (int j = 0; j < W; j++)
+    for (int i = 0; i < W; i++)
     {
+        bool is = false;
+        for (int j = 0; j < H; j++)
+        {
+            if (S[j][i] == '#')
+            {
+                is = true;
+            }
+        }
+        if (!is)
+        {
+            ncbomb.push_back(i);
+        }
     }
+    for (int i = 0; i < static_cast<int>(nrbomb.size()); i++)
+    {
+        for (int j = 0; j < static_cast<int>(ncbomb.size()); j++)
+        {
+            q.push({nrbomb[i], ncbomb[j]});
+            dist[nrbomb[i]][ncbomb[j]] = 0;
+        }
+    }
+    vector<int> dx = {-1, 1, 0, 0};
+    vector<int> dy = {0, 0, -1, 1};
+    pair<int, int> p;
+    while (!q.empty())
+    {
+        p = q.front();
+        q.pop();
+        for (int i = 0; i < 4; i++)
+        {
+            int xx = p.first + dx[i];
+            int yy = p.second + dy[i];
+            if (0 <= xx && xx < H && 0 <= yy && yy < W)
+            {
+                if (S[xx][yy] != '#' && dist[xx][yy] == -1)
+                {
+                    dist[xx][yy] = dist[p.first][p.second] + 1;
+                    q.push({xx, yy});
+                }
+            }
+        }
+    }
+    int counting = 0;
+    for (int i = 0; i < H; i++)
+    {
+        for (int j = 0; j < W; j++)
+        {
+            if (dist[i][j] != -1 && dist[i][j] <= K)
+            {
+                counting++;
+            }
+        }
+    }
+    cout << counting << "\n";
 }
