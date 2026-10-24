@@ -72,7 +72,7 @@ mkf() {
     code "${1}"
 }
 sbf() {
-    code ~/cpp-study/work/.bash_functions
+    code ~/work/cpp-study/.bash_functions
 }
 sbr() {
     source ~/.bashrc
@@ -153,3 +153,12 @@ nexti() {
 previ() {
     _move_problem_itp "${1:--1}"
 }
+
+# 2026/10/24 ovmsの起動と停止コマンドを作る（エイリアスで良いのでは？）
+ovms() {
+    ~/bin/start-ovms.sh
+}
+ovstop() {
+    ~/bin/stop-ovms.sh
+}
+
