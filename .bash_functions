@@ -3,6 +3,7 @@ run() {
     local exe="${2:-main}"
     g++ -std=c++23 -O0 -g -Wall -Wextra -Wshadow -fsanitize=address,undefined "${src}" -o "${exe}" && "./${exe}"
 }
+# 2026/10/24 入出力を早くするやつを追記
 mkabc() {
     if [ $# -ne 1 ]; then
     return 1
@@ -21,6 +22,8 @@ mkabc() {
 using namespace std;
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 }
 EOF
     fi
@@ -30,7 +33,7 @@ EOF
 }
 _move_problem() {
     local step="${1}"
-    if [[ ! "$(basename "${PWD}")" =~ ^abc[0-9]{3}_[a-g]$ ]]; then
+    if [[ ! "$(basename "${PWD}")" =~ ^abc[0-9]+_[a-g]$ ]]; then
     echo "ディレクトリが違います"
     return 1
     fi
@@ -94,6 +97,7 @@ pushcpp() {
 # 2026/10/12
 # aojのitp1の構造を作るコマンド（ほぼmkabcの再利用）
 # こんな複雑だったっけ
+# 2026/10/24同様に追記
 mkitp() {
     if [ $# -ne 1 ]; then
     return 1
@@ -112,6 +116,8 @@ mkitp() {
 using namespace std;
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 }
 EOF
     fi
@@ -154,11 +160,28 @@ previ() {
     _move_problem_itp "${1:--1}"
 }
 
-# 2026/10/24 ovmsの起動と停止コマンドを作る（エイリアスで良いのでは？）
+# 2026/10/23(0時回ってるからほぼ24) ovmsの起動と停止コマンドを作る（エイリアスで良いのでは？）
 ovms() {
     ~/bin/start-ovms.sh
 }
 ovstop() {
     ~/bin/stop-ovms.sh
+}
+
+# 2026/10/24 joi作るやつ 入出力を速くするやつを導入
+mkjoi() {
+    for alphabet in {a..i}; do
+    mkdir -p "joi/"${1}"/${alphabet}"
+    cat > "joi/${1}/${alphabet}/main.cpp" << EOF
+// joi_${1}_${alphabet}
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+}
+EOF
+    done
 }
 
