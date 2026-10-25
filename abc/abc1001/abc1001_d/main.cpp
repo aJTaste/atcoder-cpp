@@ -21,7 +21,7 @@ int main()
             {
                 continue;
             }
-            if (A[j] % A[i] == 0)
+            if (A[i] % A[j] == 0 && i < j)
             {
                 counting++;
             }
