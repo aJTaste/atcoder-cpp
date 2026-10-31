@@ -4,55 +4,65 @@
 using namespace std;
 int main()
 {
-    int N;
+    long long N;
     cin >> N;
-    int count = 0;
-    vector<int> pn;
-    pn.push_back(2);
-    pn.push_back(3);
-    for (int i = 6; i <= N; i += 6)
+    vector<long long> pn;
+    vector<bool> pnb(300000, true);
+    pnb[0] = false;
+    pnb[1] = false;
+    for (long long i = 2; i * i < 300000; i++)
     {
-        bool a = true;
-        bool b = true;
-        for (int j = 0; j < static_cast<int>(pn.size()); j++)
+        if (pnb[i])
         {
-            if ((i - 1) % pn[j] == 0)
+            for (long long j = i * i; j < 300000; j += i)
             {
-                a = false;
+                pnb[j] = false;
             }
-            if ((i + 1) % pn[j] == 0)
-            {
-                b = false;
-            }
-        }
-        if (a == true)
-        {
-            pn.push_back(i - 1);
-        }
-        if (b == true)
-        {
-            pn.push_back(i + 1);
         }
     }
-    int s = static_cast<int>(pn.size());
-    for (int i = 0; i < s - 2; i++)
+    for (long long i = 2; i < 300000; i++)
     {
-        for (int j = i + 1; j < s - 1; j++)
+        if (pnb[i])
         {
-            for (int k = j + 1; k < s; k++)
+            pn.push_back(i);
+        }
+    }
+    long long counting = 0;
+    for (long long i = 0; i < static_cast<long long>(pn.size()) - 2; i++)
+    {
+        bool iss = false;
+        for (long long j = i + 1; j < static_cast<long long>(pn.size()) - 1; j++)
+        {
+            bool is = false;
+            for (long long k = j + 1; k < static_cast<long long>(pn.size()); k++)
             {
-                if (pn[i] * pn[i] * pn[j] * pn[k] * pn[k] <= N)
+                if (pn[i] * pn[i] <= N / pn[j] / pn[k] / pn[k])
                 {
-                    count++;
+                    counting++;
+                }
+                else if (k == j + 1)
+                {
+                    is = true;
+                    break;
                 }
                 else
                 {
                     break;
                 }
             }
+            if (is)
+            {
+                if (j == i + 1)
+                {
+                    iss = true;
+                }
+                break;
+            }
+        }
+        if (iss)
+        {
             break;
         }
-        break;
     }
-    cout << count << "\n";
+    cout << counting << "\n";
 }
