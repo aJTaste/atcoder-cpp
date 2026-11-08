@@ -184,3 +184,28 @@ int main()
 EOF
     done
 }
+
+# 2026/11/08 なんかこのコマンドが消えていましたよ
+youtube() {
+    local url="$1"
+    local filename="$2"
+    local format="wav"
+    local output_dir="$HOME/work/tools/music"
+
+    if [ -n "$3" ] && [ "$3" = "mp3" ]; then
+        format="mp3"
+    fi
+    local output_template="%(title)s.%(ext)s"
+    if [ -n "$filename" ]; then
+        output_template="${filename}.%(ext)s"
+    fi
+    yt-dlp -f "ba*/ba/b" \
+        --remote-components ejs:github \
+        -x \
+        --audio-format "$format" \
+        --audio-quality 0 \
+        -P "$output_dir" \
+        -o "$output_template" \
+        "$url"
+}
+
