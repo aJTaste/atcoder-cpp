@@ -20,6 +20,7 @@ mkabc() {
 // ${contest}_${alphabet[i]}
 #include <bits/stdc++.h>
 using namespace std;
+constexpr long long INF = 4e18;
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -114,6 +115,7 @@ mkitp() {
 // ${contest}_${alphabet[i]}
 #include <bits/stdc++.h>
 using namespace std;
+constexpr long long INF = 4e18;
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -166,23 +168,6 @@ ovms() {
 }
 ovstop() {
     ~/bin/stop-ovms.sh
-}
-
-# 2026/10/24 joi作るやつ 入出力を速くするやつを導入
-mkjoi() {
-    for alphabet in {a..i}; do
-    mkdir -p "joi/"${1}"/${alphabet}"
-    cat > "joi/${1}/${alphabet}/main.cpp" << EOF
-// joi_${1}_${alphabet}
-#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-}
-EOF
-    done
 }
 
 # 2026/11/08 なんかこのコマンドが消えていましたよ

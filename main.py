@@ -13,3 +13,24 @@ for i in range(N):
     if L <= int(h) <= R and s == "Yes":
         cnt += 1
 print(cnt)
+
+
+
+
+N, L, R = map(int, input().split())
+H = [0] * N
+S = ["null"] * N
+counting = 0
+
+for i in range(N):
+    h, s = input().split()
+    H[i] = int(h)
+    S[i] = s
+
+
+for i in range(N):
+    if L <= H[i] and H[i] <= R and S[i] == "Yes":
+        counting = counting + 1
+
+
+print(counting)

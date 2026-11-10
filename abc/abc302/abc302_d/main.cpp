@@ -17,20 +17,30 @@ int main()
     {
         cin >> x;
     }
-    pair<long long, long long> max_ = {0, 0};
     sort(A.begin(), A.end());
     sort(B.begin(), B.end());
-    for (long long i = 0; i < N; i++)
+    while (true)
     {
-        auto it = upper_bound(B.begin(), B.end(), A[i] + D) - B.begin() - 1;
-        if (it != B.begin())
+        if (A.empty() || B.empty())
         {
-            if (A[i] + B[it] > max_.first + max_.second)
+            cout << -1 << "\n";
+            return 0;
+        }
+        if (abs(A.back() - B.back()) > D)
+        {
+            if (A.back() > B.back())
             {
-                max_.first = A[i];
-                max_.second = B[upper_bound(B.begin(), B.end(), A[i] + D) - B.begin() - 1];
+                A.pop_back();
+            }
+            else
+            {
+                B.pop_back();
             }
         }
+        else
+        {
+            cout << A.back() + B.back() << "\n";
+            return 0;
+        }
     }
-    cout << max_.first + max_.second << "\n";
 }
