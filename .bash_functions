@@ -1,7 +1,7 @@
 run() {
     local src="${1:-main.cpp}"
     local exe="${2:-main}"
-    g++ -std=c++23 -O0 -g -Wall -Wextra -Wshadow -fsanitize=address,undefined "${src}" -o "${exe}" && "./${exe}"
+    g++ -std=c++23 -O0 -g -Wall -Wextra -Wshadow -fsanitize=address,undefined -I "$HOME/acl" "${src}" -o "${exe}" && "./${exe}"
 }
 # 2026/10/24 入出力を早くするやつを追記
 mkabc() {
