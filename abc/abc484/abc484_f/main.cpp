@@ -1,5 +1,5 @@
 // abc484_f
-#include "atcoder/all"
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
 using namespace atcoder;

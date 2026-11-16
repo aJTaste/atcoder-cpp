@@ -2,7 +2,7 @@
   "configurations": [
     {
       "name": "Linux",
-      "includePath": ["${workspaceFolder}/**"],
+      "includePath": ["${workspaceFolder}/**", "/home/tiliq/acl"],
       "defines": [],
       "compilerPath": "/usr/bin/g++",
       "cppStandard": "c++23"
