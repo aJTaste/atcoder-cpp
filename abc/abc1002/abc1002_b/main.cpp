@@ -10,7 +10,9 @@ int main()
     if (N % 3 == 0)
     {
         cout << "Pa\n";
-        return 0;
     }
-    cout << "Ken\n";
+    else
+    {
+        cout << "Ken\n";
+    }
 }
