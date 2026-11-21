@@ -18,8 +18,10 @@ mkabc() {
     if [ ! -f "${dirabc}/main.cpp" ]; then
     cat > "${dirabc}/main.cpp" << EOF
 // ${contest}_${alphabet[i]}
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 constexpr long long INF = 4e18;
 int main()
 {
@@ -113,8 +115,10 @@ mkitp() {
     if [ ! -f "${diritp1}/main.cpp" ]; then
     cat > "${diritp1}/main.cpp" << EOF
 // ${contest}_${alphabet[i]}
+#include <atcoder/all>
 #include <bits/stdc++.h>
 using namespace std;
+using namespace atcoder;
 constexpr long long INF = 4e18;
 int main()
 {
